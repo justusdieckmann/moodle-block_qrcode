@@ -115,6 +115,9 @@ jobs:
         moodle-branch: ['MOODLE_402_STABLE']
         database: ['pgsql']
 
+    env:
+      BEHAT_COVERAGE_FOR: block_qrcode
+
     steps:
       - name: Start PostgreSQL
         run: docker run -p 5432:5432 -e POSTGRES_USER=postgres -e POSTGRES_HOST_AUTH_METHOD=trust -d postgres:14
@@ -179,8 +182,6 @@ jobs:
         run: |
           moodle-plugin-ci behat --profile chrome
           php moodle/local/behatcoverage/cli/export.php
-        env:
-          BEHAT_COVERAGE_FOR: block_qrcode
 
       - name: Upload Behat coverage
         uses: codecov/codecov-action@v3
