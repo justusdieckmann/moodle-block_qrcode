@@ -181,6 +181,7 @@ jobs:
       - name: Behat features
         run: |
           moodle-plugin-ci behat --profile chrome
+          find /home/runner/work -name behatlogdata.log -exec cat '{}' \; -print
           php moodle/local/behatcoverage/cli/export.php
 
       - name: Upload Behat coverage
