@@ -181,7 +181,9 @@ jobs:
       - name: Behat features
         run: |
           moodle-plugin-ci behat --profile chrome
+          echo "Dumping data"
           find /home/runner/work -name behatlogdata.log -exec cat '{}' \; -print
+          find /home/runner/work -name behat.cov -exec cat '{}' \; -print
           php moodle/local/behatcoverage/cli/export.php
 
       - name: Upload Behat coverage
