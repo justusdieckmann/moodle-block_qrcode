@@ -182,9 +182,11 @@ jobs:
         run: |
           moodle-plugin-ci behat --profile chrome
           echo "Dumping data"
-          find /home/runner/work -name behatlogdata.log -exec cat '{}' \; -print
-          find /home/runner/work -name behat.cov -exec cat '{}' \; -print
+          find /home/runner/work/moodle-block_qrcode/moodle-block_qrcode/moodledata/ -name behatlogdata.log -exec cat '{}' \; -print
+          find /home/runner/work/moodle-block_qrcode/moodle-block_qrcode/moodledata/ -name behat.cov -exec cat '{}' \; -print
+          echo "Done dumping data"
           php moodle/local/behatcoverage/cli/export.php
+          echo "Done exporting data"
 
       - name: Upload Behat coverage
         uses: codecov/codecov-action@v3
